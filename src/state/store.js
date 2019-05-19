@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
 
 const coreMiddleWares = [
   //notificationsMiddleWare
-  //   apiMiddleWare,
+  apiMiddleWare,
   loggerMiddleWare
 ];
 
