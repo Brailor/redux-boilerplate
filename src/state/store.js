@@ -1,32 +1,25 @@
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
-import apiMiddleWare from 'redux-thunk';
-import { booksReducer } from './reducers';
+import { booksReducer } from './reducers/books.reducer';
+import { notificationReducer } from './reducers/notifications.reducer';
+import { uiReducer } from './reducers/ui.reducer';
 
-function placeHolder(state = {}, action) {
-  return state;
-}
+import loggerMiddleWare from './middlewares/core/loggerMiddleWare';
+import apiMiddleWare from './middlewares/core/apiMiddleWare';
+import booksMiddleWare from './middlewares/feature/booksMiddleWare';
+
 const rootReducer = combineReducers({
-  books: booksReducer, //booksReducer,
-  notifications: placeHolder //notificationsReducer
+  books: booksReducer,
+  notifications: notificationReducer,
+  ui: uiReducer
 });
-
-const loggerMiddleWare = store => next => action => {
-  //log every action at this point, later change this to log only specific
-  // action types
-  console.log(`Dispatching action: ${JSON.stringify(action)}`);
-  next(action);
-  console.log(`State after action: ${JSON.stringify(store.getState())}`);
-};
 
 const coreMiddleWares = [
   //notificationsMiddleWare
-  apiMiddleWare,
+  //   apiMiddleWare,
   loggerMiddleWare
 ];
 
-const featureMiddleWares = [
-  // booksMiddleWare
-];
+const featureMiddleWares = [booksMiddleWare];
 
 const enhancer = compose(
   applyMiddleware(...featureMiddleWares, ...coreMiddleWares),

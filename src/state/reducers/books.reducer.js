@@ -1,6 +1,7 @@
-import { ADD_BOOK, REMOVE_BOOK } from './actions/books';
+import { ADD_BOOK, REMOVE_BOOK } from '../actions/books';
 
 let initState = [];
+
 export function booksReducer(state = initState, action) {
   const { type, payload = {} } = action;
 

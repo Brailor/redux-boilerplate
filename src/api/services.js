@@ -19,9 +19,12 @@ const result = services.reduce((res, service) => {
 export default result;
 
 function curry(fn) {
+  const numOfArgs = fn.length;
   return function curried(...args) {
-    if (fn.length === args.length) return fn(...args);
+    debugger;
+    if (numOfArgs === args.length) return fn(...args);
 
     return curried.bind(null, ...args);
   };
 }
+window.curry = curry;
