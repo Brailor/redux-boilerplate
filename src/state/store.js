@@ -13,7 +13,6 @@ const rootReducer = combineReducers({
 const loggerMiddleWare = store => next => action => {
   //log every action at this point, later change this to log only specific
   // action types
-  debugger;
   console.log(`Dispatching action: ${JSON.stringify(action)}`);
   next(action);
   console.log(`State after action: ${JSON.stringify(store.getState())}`);

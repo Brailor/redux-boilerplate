@@ -1,4 +1,4 @@
-import { ADD_BOOK, REMOVE_BOOK } from './actions';
+import { ADD_BOOK, REMOVE_BOOK } from './actions/books';
 
 let initState = [];
 export function booksReducer(state = initState, action) {
