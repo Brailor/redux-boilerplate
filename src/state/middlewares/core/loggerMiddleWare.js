@@ -1,10 +1,11 @@
 const loggerMiddleWare = store => next => action => {
-  //log every action at this point, later change this to log only specific
-  // action types
-
   console.group(action.type);
   console.log(action);
+  console.group('State after the action');
+
+  console.log(store.getState());
   console.groupEnd();
-  next(action);
+
+  console.groupEnd();
 };
 export default loggerMiddleWare;

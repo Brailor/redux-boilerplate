@@ -1,4 +1,4 @@
-import { ADD_BOOK, REMOVE_BOOK } from '../actions/books';
+import { ADD_BOOKS, REMOVE_BOOK } from '../actions/books';
 
 let initState = [];
 
@@ -6,7 +6,7 @@ export function booksReducer(state = initState, action) {
   const { type, payload = {} } = action;
 
   switch (type) {
-    case ADD_BOOK: {
+    case ADD_BOOKS: {
       return [...state, payload];
     }
 

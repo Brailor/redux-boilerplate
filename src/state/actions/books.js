@@ -1,14 +1,18 @@
+/* Feature */
 export const BOOKS = '[BOOKS]';
 
-export const ADD_BOOK = `${BOOKS} ADD_BOOK`;
+/* Document actions */
+export const ADD_BOOKS = `${BOOKS} ADD_BOOKS`;
 export const REMOVE_BOOK = `${BOOKS} REMOVE_BOOK`;
 export const UPDATE_BOOK = `${BOOKS} UPDATE_BOOK`;
+
+/* Command actions */
 export const FETCH_BOOKS = `${BOOKS} FETCH_BOOKS`;
 
-export function addBook({ payload }) {
+export function addBooks({ payload }) {
   return {
     payload,
-    type: ADD_BOOK
+    type: ADD_BOOKS
   };
 }
 

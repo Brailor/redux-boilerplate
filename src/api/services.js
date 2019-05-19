@@ -1,7 +1,8 @@
 import { apiRequest } from '../state/actions/api';
+import { curry } from '../utils/index';
 const BOOKS_URL = 'https://www.googleapis.com/books/v1/volumes?q=redux';
 
-const services = [
+const serviceConfigs = [
   {
     name: 'getBooks',
     url: BOOKS_URL,
@@ -9,19 +10,11 @@ const services = [
   }
 ];
 
-const result = services.reduce((res, service) => {
+const services = serviceConfigs.reduce((res, service) => {
   return {
     ...res,
     [service.name]: curry(apiRequest)({ ...service })
   };
 }, {});
 
-export default result;
-
-function curry(fn) {
-  return function curried(...args) {
-    if (fn.length === args.length) return fn(...args);
-
-    return curried.bind(null, ...args);
-  };
-}
+export default services;

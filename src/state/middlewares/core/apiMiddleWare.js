@@ -3,14 +3,20 @@ import { setLoader } from '../../actions/ui';
 import { setNotification } from '../../actions/notifications';
 
 const apiMiddleWare = ({ dispatch }) => next => action => {
+  // call next middleware for logging purposes
   next(action);
+
   const { type, meta } = action;
+
   if (type.includes(API_REQUEST)) {
-    const { url, method, timeout, feature } = meta;
+    const { url, method, timeout, feature, body, params } = meta;
 
     dispatch(setLoader({ state: true, feature }));
+
     fetch(url, {
       method,
+      body,
+      params,
       timeout
     })
       .then(response => {
@@ -18,7 +24,7 @@ const apiMiddleWare = ({ dispatch }) => next => action => {
       })
       .then(response => {
         // // at this point the request was sucessful from the network point of view
-        // // but the request could be valid/invalid depending on the backend side
+        // // but the request could be valid/invalid depending on the backend logic
         // // eg: the requset was correct but the backend could send success: true/false in the response
         // // so we have to handle it somehow
         // if (response.success) {

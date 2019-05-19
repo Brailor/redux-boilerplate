@@ -5,6 +5,7 @@ export const API_FAILURE = 'API_FAILURE';
 export function apiRequest(fetchOpts, actionOpts) {
   const { url, method, name } = fetchOpts;
   const { params, feature, timeout, meta = {} } = actionOpts;
+
   return {
     type: `${feature} ${API_REQUEST}`,
     payload: params,

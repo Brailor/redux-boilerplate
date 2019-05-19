@@ -13,13 +13,9 @@ const rootReducer = combineReducers({
   ui: uiReducer
 });
 
-const coreMiddleWares = [
-  //notificationsMiddleWare
-  apiMiddleWare,
-  loggerMiddleWare
-];
-
 const featureMiddleWares = [booksMiddleWare];
+
+const coreMiddleWares = [apiMiddleWare, loggerMiddleWare];
 
 const enhancer = compose(
   applyMiddleware(...featureMiddleWares, ...coreMiddleWares),
